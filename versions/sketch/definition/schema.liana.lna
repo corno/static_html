@@ -1,0 +1,104 @@
+(
+    `schema`: | `schema` (
+        `schema imports`: {}
+        `resolver imports`: {}
+        `globals`: (
+            `complexity`: | `unconstrained` ~
+            `text types`: {
+                'multi line text': < | `multi line` ~ | `no` ~ >
+                'text': < | `single line` ~ | `no` ~ >
+            }
+            `simple types`: {
+                'natural': < | `number` < | `exact` < _ | `natural` ~ > > >
+            }
+        )
+        `modules`: {
+            'Root': < | `component` < | `internal acyclic` 'Document' _ > >
+            'Document': < | `group` {
+                'css': < _ | `text` | `global` 'multi line text' >
+                'root': < _ | `component` < | `internal` 'Flow Element' _ > >
+            } >
+            'Flow Element': < | `state` < {
+                'div': < _ _ | `component` < | `internal` 'Flow Content' _ > >
+                'dimensioned div': < _ _ | `group` {
+                    'width': < _ | `optional` | `simple` | `global` 'natural' >
+                    'height': < _ | `optional` | `simple` | `global` 'natural' >
+                    'content': < _ | `component` < | `internal` 'Flow Content' _ > >
+                } >
+                'classified div': < _ _ | `group` {
+                    'classes': < _ | `component` < | `internal` 'Classes' _ > >
+                    'content': < _ | `component` < | `internal` 'Flow Content' _ > >
+                } >
+                'table': < _ _ | `group` {
+                    'classes': < _ | `component` < | `internal` 'Classes' _ > >
+                    'sections': < _ | `list` < | `group` {
+                        'classes': < _ | `component` < | `internal` 'Classes' _ > >
+                        'type': < _ | `state` < {
+                            'header': < _ _ | `nothing` ~ >
+                            'body': < _ _ | `nothing` ~ >
+                            'footer': < _ _ | `nothing` ~ >
+                        } _ > >
+                        'rows': < _ | `list` < | `group` {
+                            'classes': < _ | `component` < | `internal` 'Classes' _ > >
+                            'height': < _ | `optional` | `simple` | `global` 'natural' >
+                            'cells': < _ | `list` < | `group` {
+                                'type': < _ | `state` < {
+                                    'th': < _ _ | `nothing` ~ >
+                                    'td': < _ _ | `nothing` ~ >
+                                } _ > >
+                                'colspan': < _ | `optional` | `simple` | `global` 'natural' >
+                                'classes': < _ | `component` < | `internal` 'Classes' _ > >
+                                'content': < _ | `component` < | `internal` 'Flow Content' _ > >
+                            } _ > >
+                        } _ > >
+                    } _ > >
+                } >
+                'span': < _ _ | `component` < | `internal` 'Phrasing Content' _ > >
+                'label': < _ _ | `group` {
+                    'classes': < _ | `component` < | `internal` 'Classes' _ > >
+                    'text': < _ | `text` | `global` 'text' >
+                    'content': < _ | `component` < | `internal` 'Flow Content' _ > >
+                } >
+                'img': < _ _ | `group` {
+                    'classes': < _ | `component` < | `internal` 'Classes' _ > >
+                    'src': < _ | `text` | `global` 'text' >
+                    'alt': < _ | `text` | `global` 'text' >
+                    'width': < _ | `optional` | `simple` | `global` 'natural' >
+                    'height': < _ | `optional` | `simple` | `global` 'natural' >
+                } >
+                // 'svg': < _ _ | `group` {
+                //     'classes': < _ | `component` < | `internal` 'Classes' _ > >
+                //     'content': < _ | `component` < | `external` < 'xml' 'Mixed Content' > _ > >
+                //     'width': < _ | `optional` | `simple` | `global` 'natural' >
+                //     'height': < _ | `optional` | `simple` | `global` 'natural' >
+                // } >
+            } _ > >
+            'Flow Content': < | `list` < | `component` < | `internal` 'Flow Element' _ > _ > >
+            'Classes': < | `list` < | `text` | `global` 'text' _ > >
+            'Phrasing Content': < | `list` < | `component` < | `internal` 'Phrasing Element' _ > _ > >
+            'Phrasing Element': < | `state` < {
+                'span': < _ _ | `component` < | `internal` 'Phrasing Content' _ > >
+                'classified span': < _ _ | `group` {
+                    'classes': < _ | `component` < | `internal` 'Classes' _ > >
+                    'content': < _ | `component` < | `internal` 'Phrasing Content' _ > >
+                } >
+                'titled span': < _ _ | `group` {
+                    'title': < _ | `text` | `global` 'text' >
+                    'content': < _ | `component` < | `internal` 'Phrasing Content' _ > >
+                } >
+                'a': < _ _ | `group` {
+                    'text': < _ | `text` | `global` 'text' >
+                    'href': < _ | `text` | `global` 'text' >
+                } >
+                'p': < _ _ | `group` {
+                    'text': < _ | `text` | `global` 'text' >
+                } >
+            } _ > >
+        }
+        `complexity`: | `unconstrained` ~
+    )
+    `schema path`: [ ]
+    `complexity`: | `unconstrained` (
+        `module`: "Root"
+    )
+)
